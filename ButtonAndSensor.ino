@@ -13,9 +13,10 @@ void setup() {
   // set LED pins to output
   DDRB |= B00111100;
   pinMode(13, OUTPUT);
-  // set button pins to input
+  // set button/potentiometer pins to input
   pinMode(A4, INPUT);
   pinMode(A5, INPUT);
+  pinMode(A3, INPUT);
 }
 
 void loop() {
@@ -38,6 +39,7 @@ void loop() {
     lightOn -= 1;
     if (lightOn < 0) lightOn = 3;
   }
+  // adjust the time between blinks based on potentiometer reading
   int time = analogRead(A3);
   // blink the current light
   PORTD |= (1 << (lightOn+2));
