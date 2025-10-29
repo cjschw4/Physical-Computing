@@ -13,6 +13,7 @@ void setup() {
   // set LED pins to output
   DDRB |= B00111100;
   pinMode(13, OUTPUT);
+  // set button pins to input
   pinMode(A4, INPUT);
   pinMode(A5, INPUT);
 }
@@ -28,6 +29,8 @@ void loop() {
       goRight = true;
     }
   }
+  // move the index of which light is on
+    // wrap around if on an edge
   if (goRight) {
     lightOn += 1;
     if (lightOn >= 4) lightOn = 0;
@@ -35,6 +38,7 @@ void loop() {
     lightOn -= 1;
     if (lightOn < 0) lightOn = 3;
   }
+  // blink current light
   int time = 250; 
   PORTD |= (1 << (lightOn+2));
   delay(time);
