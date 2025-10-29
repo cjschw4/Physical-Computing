@@ -1,3 +1,4 @@
+// GLOBAL VARIABLES
 const int LED_A = 5;
 const int LED_B = 4;
 const int LED_C = 3;
@@ -10,19 +11,21 @@ int pcellValue;
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-  // initialize digital pin LED_BUILTIN as an output.
+  // initialize digital pins as outputs
   pinMode(LED_A, OUTPUT); 
   pinMode(LED_B, OUTPUT); 
   pinMode(LED_C, OUTPUT); 
   pinMode(LED_D, OUTPUT); 
   pinMode(debugPin, OUTPUT);
+  // initialize photocell as input
   pinMode(pcellPin, INPUT);
 }
 
 // the loop function runs over and over again forever
 void loop() {
+  // get photocell value
   pcellValue = analogRead(pcellPin);
-  // first LED for 2 seconds
+  // turn on each LED based on pcellValue 
   if (pcellValue > 10) {
     digitalWrite(LEDs[0], HIGH);
   }
@@ -41,5 +44,6 @@ void loop() {
     digitalWrite(LEDs[i], LOW);
   }
 }
+
 
 
