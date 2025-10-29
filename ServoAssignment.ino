@@ -13,18 +13,22 @@ int potVal;
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-  // initialize digital pin LED_BUILTIN as an output.
   pinMode(debugPin, OUTPUT);
-  pinMode(potPin, INPUT);
+  // initialize servo
   motor.attach(motorPin);
+  // initialize potentiometer pin as input
+  pinMode(potPin, INPUT);
 }
 
 // the loop function runs over and over again forever
 void loop() {
+  // get potentiometer value
   potVal = analogRead(potPin);
+  // set servo value based on potVal
   potVal = map(potVal, 0, 1023, 0, 180);
   motor.write(potVal);
   delay(15);
 }
+
 
 
